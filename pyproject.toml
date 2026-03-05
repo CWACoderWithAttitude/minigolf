@@ -1,0 +1,7 @@
+[project]
+name = "minigolf-app"
+version = "0.1.0"
+description = "A web app to track miniature golf games using Python and HTMX."
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
