@@ -1,1 +1,3 @@
 bitte erstelle eine mobile app zur verwaltung von minigolf spielen. die app muss react nativr verwenenden. die app muss mehrere spieler unterstützen. die app verwendet typecript mit linting. geschriebener typescriptcode wird on the fly übersetzt.
+
+wie geht starte ich diese app? bitte erstelle mir eine package.json mit targets zum starten, debuggen und linten. erstelle mir eine passende typescript configurations-datei.
