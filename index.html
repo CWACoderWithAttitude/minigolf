@@ -17,9 +17,18 @@
         <h1>Miniature Golf Tracker</h1>
         
         <div id="game-area">
-            <button hx-post="/start-game" hx-target="#game-area" hx-swap="innerHTML">
-                Start New Game
-            </button>
+            <form hx-post="/start-game" hx-target="#game-area" hx-swap="innerHTML">
+                <h2>Start a New Game</h2>
+                <label for="course_name">Course Name:</label>
+                <input type="text" id="course_name" name="course_name" value="The Grand Vista" required>
+                
+                <h3>Players</h3>
+                <input type="text" name="players" placeholder="Player 1 Name" required><br>
+                <input type="text" name="players" placeholder="Player 2 Name"><br>
+                <input type="text" name="players" placeholder="Player 3 Name"><br>
+                <input type="text" name="players" placeholder="Player 4 Name"><br>
+                <button type="submit">Start Game</button>
+            </form>
         </div>
     </div>
 </body>

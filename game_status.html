@@ -1,0 +1,10 @@
+<div id="game-status">
+    <h3>Game Started!</h3>
+    <p><strong>Course:</strong> {{ game.course_name }}</p>
+    <p><strong>Players:</strong></p>
+    <ul>
+        {% for player in game.players %}
+        <li>{{ player.name }}</li>
+        {% endfor %}
+    </ul>
+</div>

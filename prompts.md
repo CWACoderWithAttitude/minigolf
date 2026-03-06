@@ -7,3 +7,10 @@ backend logic has to be covered by unit tests. tests have to use pytest.
 
 
 please generate requirement files for this project. create two files - one yor game logic and frontend logic reqirements and one for test requirements
+
+please analyze the application and update the requirements file.
+
+please implements the game logic for the "miniature golf game".
+the game has to support multiple players. the individual game scores are saved in a sqllite database.
+
+import fast api HTMLResponse

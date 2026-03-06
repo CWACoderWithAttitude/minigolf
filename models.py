@@ -1,25 +1,40 @@
-from dataclasses import dataclass, field
-from typing import List
+from sqlalchemy import Column, Integer, String, ForeignKey, Table
+from sqlalchemy.orm import relationship
+from database import Base
 
-@dataclass
-class Player:
-    """Represents a player in the game."""
-    name: str
-    scores: List[int] = field(default_factory=list)
+game_players = Table(
+    'game_players', Base.metadata,
+    Column('game_id', ForeignKey('games.id'), primary_key=True),
+    Column('player_id', ForeignKey('players.id'), primary_key=True)
+)
 
-    @property
-    def total_score(self) -> int:
-        return sum(self.scores)
+class Game(Base):
+    __tablename__ = "games"
 
-@dataclass
-class Game:
-    """Represents a single minigolf game."""
-    players: List[Player]
-    course_name: str
-    number_of_holes: int = 18
+    id = Column(Integer, primary_key=True, index=True)
+    course_name = Column(String)
+    number_of_holes = Column(Integer, default=18)
 
-    def add_player(self, player_name: str):
-        """Adds a new player to the game."""
-        if any(p.name == player_name for p in self.players):
-            raise ValueError(f"Player {player_name} is already in the game.")
-        self.players.append(Player(name=player_name))
+    players = relationship("Player", secondary=game_players, back_populates="games")
+    scores = relationship("Score", back_populates="game")
+
+class Player(Base):
+    __tablename__ = "players"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True, nullable=False)
+
+    games = relationship("Game", secondary=game_players, back_populates="players")
+    scores = relationship("Score", back_populates="player")
+
+class Score(Base):
+    __tablename__ = "scores"
+
+    id = Column(Integer, primary_key=True, index=True)
+    hole_number = Column(Integer, nullable=False)
+    strokes = Column(Integer, nullable=False)
+    player_id = Column(Integer, ForeignKey("players.id"), nullable=False)
+    game_id = Column(Integer, ForeignKey("games.id"), nullable=False)
+
+    player = relationship("Player", back_populates="scores")
+    game = relationship("Game", back_populates="scores")
