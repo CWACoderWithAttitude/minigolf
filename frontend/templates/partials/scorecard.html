@@ -1,0 +1,32 @@
+<div class="scorecard">
+    <h3>Scorecard</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                {% for hole in range(1, max_hole + 1) %}
+                <th>{{ hole }}</th>
+                {% endfor %}
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr {% if player.name == winner %}class="winner"{% endif %}>
+                <td class="player-row">{{ player.name }}</td>
+                {% for hole in range(1, max_hole + 1) %}
+                <td>
+                    {% set score = scores.get((player.id, hole)) %}
+                    {% if score %}
+                        <a href="#" hx-get="/edit-score/{{ game_id }}/{{ player.id }}/{{ hole }}" hx-target="#game-area" hx-swap="innerHTML">{{ score }}</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                {% endfor %}
+                <td><strong>{{ totals.get(player.id, 0) }}</strong></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

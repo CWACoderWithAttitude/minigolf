@@ -1,0 +1,16 @@
+= Claude
+
+https://www.linkedin.com/posts/digitalprocessarchitect_developers-are-installing-claude-code-and-share-7435679332963860480-6vVh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[Claude Code Project Structure]
+
+https://www.linkedin.com/posts/ethnstrk_kiro-claudecode-skills-share-7435714365842149376-NkwW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[Use Claude.md efficiently]
+
+https://www.linkedin.com/posts/brijpandeyji_i-spent-the-last-few-weeks-living-inside-share-7435893980883546112-jBrK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[Claude Code Workflow Cheatsheet]
+
+https://www.linkedin.com/posts/donnellychris_stop-wasting-months-building-your-first-website-share-7436032452063592449-nMmc?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[how to use Claude Code to create it in 10 minutes]
+
+https://www.linkedin.com/posts/charlywargnier_agentic-workspace-is-finally-real-google-share-7435297773991731200-rbo5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[Google Workspace CLI]
+
+== Copilot
+* https://www.linkedin.com/posts/claude-ai_claude-is-now-available-on-github-copilot-7435679332963860480-6vVh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAAgS5sBtmZyF_9KsdqYMsMZ5sDAhOIK_YQ[Claude is now available on GitHub Copilot]
+* https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-best-practices?utm_campaign=copilot-cli-ga-phase-two-2026&utm_medium=social&utm_source=social-linkedin-memory[GitHub Copilot CLI Best Practices]
+* https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-usage

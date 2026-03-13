@@ -1,0 +1,37 @@
+<div class="form-group">
+    <h2>🏆 Game Complete!</h2>
+    <p>Course: <strong>{{ game.course_name }}</strong></p>
+</div>
+
+<div class="scorecard">
+    <h3>Final Scores</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Total Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rank, score_entry in leaderboard %}
+            <tr {% if rank == 1 %}class="winner"{% endif %}>
+                <td><strong>{{ rank }}</strong></td>
+                <td>{{ score_entry.name }}</td>
+                <td><strong>{{ score_entry.total_score }}</strong></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if leaderboard %}
+<div style="text-align: center; margin-top: 20px; padding: 20px; background: #ffeb3b; border-radius: 8px;">
+    <h2>🎉 {{ leaderboard[0][1].name }} Wins! 🎉</h2>
+    <p>Congratulations on your victory with a score of {{ leaderboard[0][1].total_score }}!</p>
+</div>
+{% endif %}
+
+<div style="margin-top: 20px; text-align: center;">
+    <button hx-get="/" hx-target="#game-area" hx-swap="innerHTML">Play Again</button>
+</div>

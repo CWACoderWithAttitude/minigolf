@@ -1,12 +1,15 @@
 {
 	"name": "dc-minigolf",
-	"dockerFile": "Dockerfile",
+	//"dockerFile": "Dockerfile",
+	// https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/python/about
+	"image": "mcr.microsoft.com/devcontainers/python:3.13",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 
+	"forwardPorts": [8000],
 	"mounts": [
 		// Keep command history 
 		"source=dc-minigolf-bashhistory,target=/home/node/commandhistory,type=volume",
@@ -16,8 +19,10 @@
 	"extensions": [
 		"dbaeumer.vscode-eslint",
 		"ms-vscode.vscode-typescript-tslint-plugin",
-		"google.geminicodeassist"
+		"ms-python.python",
+		"github.copilot-chat",
 	],
+//	"google.geminicodeassist",
 	"containerEnv": {
 		"DISPLAY": "host.docker.internal:0.0"
 	},
@@ -26,8 +31,8 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install",
+	"postCreateCommand": "pip install -r requirements.txt"
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "node"
+	//"remoteUser": "node"
 }

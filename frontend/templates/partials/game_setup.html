@@ -1,0 +1,21 @@
+<div class="form-group">
+    <h2>Game Setup</h2>
+    <p>Course: <strong>{{ game.course_name }}</strong></p>
+    <p>Players: <strong>{% for player in game.players %}{{ player.name }}{% if not loop.last %}, {% endif %}{% endfor %}</strong></p>
+</div>
+
+<form hx-post="/submit-game-setup" hx-target="#game-area" hx-swap="innerHTML">
+    <input type="hidden" name="game_id" value="{{ game.id }}">
+    
+    <div class="form-group">
+        <label for="holes">Number of Holes:</label>
+        <select id="holes" name="number_of_holes" required>
+            <option value="">Select number of holes</option>
+            <option value="9" {% if game.number_of_holes == 9 %}selected{% endif %}>9 Holes</option>
+            <option value="18" {% if game.number_of_holes == 18 %}selected{% endif %}>18 Holes</option>
+            <option value="27" {% if game.number_of_holes == 27 %}selected{% endif %}>27 Holes</option>
+        </select>
+    </div>
+    
+    <button type="submit">Start Game</button>
+</form>

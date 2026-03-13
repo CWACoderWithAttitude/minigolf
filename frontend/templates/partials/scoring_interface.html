@@ -1,0 +1,22 @@
+<div class="form-group">
+    <h2>Hole {{ current_hole }} of {{ game.number_of_holes }}</h2>
+    <p>Course: <strong>{{ game.course_name }}</strong></p>
+</div>
+
+<form hx-post="/record-score/{{ game.id }}/{{ current_hole }}" hx-target="#game-area" hx-swap="innerHTML">
+    <div class="form-group">
+        {% for player in game.players %}
+        <div style="margin-bottom: 15px; padding: 10px; background: white; border-radius: 4px;">
+            <label for="strokes-{{ player.id }}"><strong>{{ player.name }}</strong>:</label>
+            <input type="number" id="strokes-{{ player.id }}" name="strokes_{{ player.id }}" min="1" placeholder="Strokes" required>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <button type="submit">Record Hole</button>
+</form>
+
+<!-- Live Scorecard -->
+<div class="scorecard" hx-get="/game/{{ game.id }}/scorecard" hx-trigger="load" hx-swap="outerHTML">
+    <p>Loading scorecard...</p>
+</div>

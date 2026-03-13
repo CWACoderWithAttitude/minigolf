@@ -6,7 +6,9 @@
 # https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/javascript-node/tags
 #
 ARG TAG=4.0.8-24-trixie
-FROM mcr.microsoft.com/devcontainers/javascript-node:${TAG}
+ARG TAG=3.13
+ARG REPO=mcr.microsoft.com/devcontainers/python
+FROM ${REPO}:${TAG}
 
 # The javascript-node image includes a non-root node user with sudo access. Use 
 # the "remoteUser" property in devcontainer.json to use it. On Linux, the container 
@@ -19,24 +21,25 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Alter node user as needed, install tslint, typescript. eslint is installed by javascript image
-RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
-        groupmod --gid $USER_GID $USERNAME \
-        && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
-        && chmod -R $USER_UID:$USER_GID /home/$USERNAME \
-        && chmod -R $USER_UID:root /usr/local/share/nvm /usr/local/share/npm-global; \
-    fi \
+#RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
+#        groupmod --gid $USER_GID $USERNAME \
+#        && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
+#        && chmod -R $USER_UID:$USER_GID /home/$USERNAME \
+#    fi 
+        #&& chmod -R $USER_UID:root /u sr/local/share/nvm /usr/local/share/npm-global; \
 # #     #
 # #     # Install tslint, typescript. eslint is installed by javascript image
-    && sudo -u ${USERNAME} npm install -g tslint typescript
+    #&& sudo -u ${USERNAME} npm install -g tslint typescript
 
 # # # Save command line history 
-RUN echo "export HISTFILE=/home/$USERNAME/commandhistory/.bash_history" >> "/home/$USERNAME/.bashrc" \
-    && echo "export PROMPT_COMMAND='history -a'" >> "/home/$USERNAME/.bashrc" \
-    && mkdir -p /home/$USERNAME/commandhistory \
-    && touch /home/$USERNAME/commandhistory/.bash_history \
-    && chown -R $USERNAME /home/$USERNAME/commandhistory
+#RUN echo "export HISTFILE=/home/$USERNAME/commandhistory/.bash_history" >> "/home/$USERNAME/.bashrc" \
+#    && echo "export PROMPT_COMMAND='history -a'" >> "/home/$USERNAME/.bashrc" \
+#    && mkdir -p /home/$USERNAME/commandhistory \
+#    && touch /home/$USERNAME/commandhistory/.bash_history \
+#    && chown -R $USERNAME /home/$USERNAME/commandhistory
 
 
-RUN apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends chromium jq
+#RUN apt-get update \
+#    && export DEBIAN_FRONTEND=noninteractive \
+#    && apt-get -y install --no-install-recommends jq
+#chromium jq

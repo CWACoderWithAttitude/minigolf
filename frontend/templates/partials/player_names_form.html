@@ -1,0 +1,17 @@
+<div class="form-group">
+    <h2>Enter Player Names</h2>
+    <p>Course: <strong>{{ course_name }}</strong></p>
+</div>
+
+<form hx-post="/submit-player-names" hx-target="#game-area" hx-swap="innerHTML">
+    <input type="hidden" name="course_name" value="{{ course_name }}">
+    
+    {% for i in range(player_count) %}
+    <div class="form-group">
+        <label for="player-{{ i + 1 }}">Player {{ i + 1 }}:</label>
+        <input type="text" id="player-{{ i + 1 }}" name="players" placeholder="Enter name" required>
+    </div>
+    {% endfor %}
+    
+    <button type="submit">Create Game</button>
+</form>

@@ -14,6 +14,8 @@ class Game(Base):
     id = Column(Integer, primary_key=True, index=True)
     course_name = Column(String)
     number_of_holes = Column(Integer, default=18)
+    current_hole = Column(Integer, default=1)
+    is_completed = Column(Integer, default=0)
 
     players = relationship("Player", secondary=game_players, back_populates="games")
     scores = relationship("Score", back_populates="game")
