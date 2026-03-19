@@ -1,0 +1,2 @@
+install:
+	playwright install --only-shell chromium
