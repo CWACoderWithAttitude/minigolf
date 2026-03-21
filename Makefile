@@ -11,6 +11,8 @@ tag: build_azure
 
 run: build
 	docker run -it --rm -p 8000:8000 $(image)
+run_local:
+	python3 main.py --host=0.0.0.0 --port=8000
 
 # only running tests headlessly
 playwright:
