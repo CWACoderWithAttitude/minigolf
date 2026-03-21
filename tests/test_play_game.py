@@ -8,14 +8,14 @@ base="http://localhost:8000"
 def setup():
     create_image_dir()
     yield
-image_dir="test_images/play_hole1"
+image_dir="test_images/play_18_holes"
 
 def create_image_dir():
     import os
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 
-def test_play_hole_1(page: Page, setup):
+def test_play_18_holes(page: Page, setup):
     # Gehe zur Base-URL (aus pytest.ini)
     page.goto(base)
     page.locator("#course-name").fill("Fancy Test Course")
@@ -39,38 +39,20 @@ def test_play_hole_1(page: Page, setup):
     holes.select_option("18 Holes")
     page.get_by_role("button", name="Start Game").click()
     area = page.locator("#game-area")
-    expect(area).to_contain_text("Hole 1 of 18")
-    page.screenshot(path=f'{image_dir}/01_start_recording.png', full_page=True)
     
-    page.get_by_label("Trinity:").fill("3")
-    page.screenshot(path=f'{image_dir}/02_recorded_trinity_scores.png', full_page  = True)
-    page.get_by_label("Morpheus:").fill("2")
-    page.screenshot(path=f'{image_dir}/02_recorded_morpheus_scores.png', full_page  = True)
-    page.get_by_label("Agent Smith:").fill("4")
-    page.screenshot(path=f'{image_dir}/02_recorded_agent_smith_scores.png', full_page  = True)
-    #page.screenshot(path=f'{image_dir}/02_recorded_all_scores.png', full_page  = True)
-    page.get_by_role("button", name="Record Hole").click()
-    expect(area).to_contain_text("Hole 2 of 18")
-    page.screenshot(path=f'{image_dir}/03_after_hole_one.png', full_page  = True)
-    
-    page.get_by_label("Trinity:").fill("3")
-    page.screenshot(path=f'{image_dir}/04_recorded_trinity_scores.png', full_page  = True)
-    page.get_by_label("Morpheus:").fill("2")
-    page.screenshot(path=f'{image_dir}/04_recorded_morpheus_scores.png', full_page  = True)
-    page.get_by_label("Agent Smith:").fill("4")
-    page.screenshot(path=f'{image_dir}/04_recorded_agent_smith_scores.png', full_page  = True)
-    #page.screenshot(path=f'{image_dir}/02_recorded_all_scores.png', full_page  = True)
-    page.get_by_role("button", name="Record Hole").click()
-    expect(area).to_contain_text("Hole 3 of 18")
-    page.screenshot(path=f'{image_dir}/05_after_hole_two.png', full_page  = True)
+    # Play all 18 holes
+    for hole_num in range(1, 19):
+        expect(area).to_contain_text(f"Hole {hole_num} of 18")
+        
+        page.get_by_label("Trinity:").fill("3")
+        page.get_by_label("Morpheus:").fill("2")
+        page.get_by_label("Agent Smith:").fill("4")
+        
+        page.screenshot(path=f'{image_dir}/hole_{hole_num:02d}_scores.png', full_page=True)
+        page.get_by_role("button", name="Record Hole").click()
 
-    # now check if the scores are correct in the score table
-    score_table = page.locator("#score-table")
-    # expect(score_table).to_contain_text("Morpheus")
-    # expect(score_table).to_contain_text("Trinity")
-    # expect(score_table).to_contain_text("Agent Smith")
-    # expect(score_table).to_contain_text("Hole 1")
-    # expect(score_table).to_contain_text("2")
-    # expect(score_table).to_contain_text("3")
-    # expect(score_table).to_contain_text("4")
-
+    # Verify Game Complete
+    #expect(area).to_contain_text("Winner")
+    # Morpheus has the lowest score (2 * 18 = 36)
+    #expect(area).to_contain_text("Morpheus")
+    page.screenshot(path=f'{image_dir}/19_game_complete.png', full_page=True)
