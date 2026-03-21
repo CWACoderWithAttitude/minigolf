@@ -17,10 +17,10 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint",
-		"ms-vscode.vscode-typescript-tslint-plugin",
+		//"dbaeumer.vscode-eslint",
+		//"ms-vscode.vscode-typescript-tslint-plugin",
 		"ms-python.python",
-		"github.copilot-chat",
+		//"github.copilot-chat",
 		"google.geminicodeassist"
 	],
 //	"google.geminicodeassist",
@@ -32,7 +32,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip install -r requirements.txt"
+	"postCreateCommand": "pip install -r requirements-test.txt"
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	//"remoteUser": "node"

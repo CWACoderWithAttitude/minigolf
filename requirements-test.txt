@@ -1,3 +1,4 @@
-#-r requirements.txt
+#https://playwright.dev/python/docs/intro#updating-playwright
+-r requirements.txt
 pytest-playwright
 pytest

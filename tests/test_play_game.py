@@ -9,11 +9,13 @@ def setup():
     create_image_dir()
     yield
 image_dir="test_images/play_hole1"
+
 def create_image_dir():
     import os
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
-def test_start_game(page: Page, setup):
+
+def test_play_hole_1(page: Page, setup):
     # Gehe zur Base-URL (aus pytest.ini)
     page.goto(base)
     page.locator("#course-name").fill("Fancy Test Course")
@@ -41,10 +43,34 @@ def test_start_game(page: Page, setup):
     page.screenshot(path=f'{image_dir}/01_start_recording.png', full_page=True)
     
     page.get_by_label("Trinity:").fill("3")
+    page.screenshot(path=f'{image_dir}/02_recorded_trinity_scores.png', full_page  = True)
     page.get_by_label("Morpheus:").fill("2")
+    page.screenshot(path=f'{image_dir}/02_recorded_morpheus_scores.png', full_page  = True)
     page.get_by_label("Agent Smith:").fill("4")
-    page.screenshot(path=f'{image_dir}/02_recorded_all_scores.png', full_page  = True)
+    page.screenshot(path=f'{image_dir}/02_recorded_agent_smith_scores.png', full_page  = True)
+    #page.screenshot(path=f'{image_dir}/02_recorded_all_scores.png', full_page  = True)
     page.get_by_role("button", name="Record Hole").click()
     expect(area).to_contain_text("Hole 2 of 18")
-    page.screenshot(path=f'{image_dir}/03_after_first_hole.png', full_page  = True)
+    page.screenshot(path=f'{image_dir}/03_after_hole_one.png', full_page  = True)
+    
+    page.get_by_label("Trinity:").fill("3")
+    page.screenshot(path=f'{image_dir}/04_recorded_trinity_scores.png', full_page  = True)
+    page.get_by_label("Morpheus:").fill("2")
+    page.screenshot(path=f'{image_dir}/04_recorded_morpheus_scores.png', full_page  = True)
+    page.get_by_label("Agent Smith:").fill("4")
+    page.screenshot(path=f'{image_dir}/04_recorded_agent_smith_scores.png', full_page  = True)
+    #page.screenshot(path=f'{image_dir}/02_recorded_all_scores.png', full_page  = True)
+    page.get_by_role("button", name="Record Hole").click()
+    expect(area).to_contain_text("Hole 3 of 18")
+    page.screenshot(path=f'{image_dir}/05_after_hole_two.png', full_page  = True)
+
+    # now check if the scores are correct in the score table
+    score_table = page.locator("#score-table")
+    # expect(score_table).to_contain_text("Morpheus")
+    # expect(score_table).to_contain_text("Trinity")
+    # expect(score_table).to_contain_text("Agent Smith")
+    # expect(score_table).to_contain_text("Hole 1")
+    # expect(score_table).to_contain_text("2")
+    # expect(score_table).to_contain_text("3")
+    # expect(score_table).to_contain_text("4")
 

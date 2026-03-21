@@ -12,6 +12,11 @@ tag: build_azure
 run: build
 	docker run -it --rm -p 8000:8000 $(image)
 
+# only running tests headlessly
+playwright:
+	playwright install --with-deps --no-shell chromium
+playwright_headless:
+	playwright install --with-deps --only-shell chromium
 
 azure_login:
 	az login
@@ -58,3 +63,6 @@ get_url:
 	  --resource-group meine-app-gruppe \
 	  --query "properties.configuration.ingress.fqdn" -o tsv
 clean_up:
+
+
+

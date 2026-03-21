@@ -13,7 +13,7 @@ def create_image_dir():
     import os
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
-def test_start_game(page: Page, setup):
+def test_start_new_game(page: Page, setup):
     # Gehe zur Base-URL (aus pytest.ini)
     page.goto(base)
     page.locator("#course-name").fill("Fancy Test Course")

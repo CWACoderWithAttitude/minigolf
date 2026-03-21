@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "github.copilot-chat",
-        "ms-vscode-remote.remote-containers"
+        "ms-vscode-remote.remote-containers",
+        "ddorch.codium-devcontainer"
     ]
 }
